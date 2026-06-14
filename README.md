@@ -31,11 +31,13 @@ bitDA-FP/
 │   ├── main.tex                         # 報告 LaTeX 原始檔（XeLaTeX）
 │   ├── refs.bib                         # 參考文獻（38 筆，URL 皆驗證可達）
 │   ├── tab_mc.tex                       # 蒙地卡羅結果表（由模擬產生）
+│   ├── tab_il.tex                       # 無常損失表（由 make_il_table.py 產生）
 │   ├── main.pdf                         # 編譯輸出
 │   └── figures/                         # 8 張向量圖（PDF）
 └── sim/
     ├── amm.py                           # 三種 AMM 池的參考實作
     ├── make_figures.py                  # 產生 6 張解析圖
+    ├── make_il_table.py                 # 產生無常損失表 tab_il.tex
     ├── simulate_lp.py                   # 蒙地卡羅模擬 + 2 張圖 + 結果表
     └── survey_digest.txt                # survey 研究摘要（寫作參考）
 ```
@@ -57,6 +59,7 @@ python3 -m venv .venv
 cd sim
 ../.venv/bin/python make_figures.py     # 6 張解析圖 → report/figures/
 ../.venv/bin/python simulate_lp.py      # 蒙地卡羅 → 2 張圖 + report/tab_mc.tex
+../.venv/bin/python make_il_table.py    # 無常損失表 → report/tab_il.tex
 ```
 
 ### 3. 編譯報告（需 XeLaTeX + 中文字型，例：macOS 內建 PingFang TC）

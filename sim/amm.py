@@ -164,13 +164,17 @@ def il_weighted(r: np.ndarray | float, wx: float):
 
 
 def il_v3_range(r: np.ndarray | float, price_low: float, price_high: float):
-    """Approximate IL of a Uniswap V3 position concentrated in [p_low, p_high].
+    """IL of a Uniswap V3 position concentrated in [p_low, p_high] (idealized,
+    no fees).
 
     Within the range the position behaves like a constant-product pool with
-    virtual reserves, so its IL is the V2 IL scaled by the concentration factor
-    1 / (1 - (p_low/p_high)^{1/4}); outside the range the position is fully in
-    one asset and IL saturates.  This returns the standard closed form derived
-    from the V3 whitepaper value function (numeraire = Y, only X moves).
+    virtual reserves, so its IL is *exactly* the V2 IL scaled by the
+    concentration factor 1 / (1 - (p_low/p_high)^{1/4}) (verified numerically:
+    the ratio is 3.41421 for [0.5, 2.0]).  Outside the range the position is
+    fully in one asset, so its value (in numeraire Y) freezes while the HODL
+    baseline keeps moving; IL therefore keeps diverging toward -100% (value
+    ratio -> 0) rather than saturating.  This returns the standard closed form
+    derived from the V3 whitepaper value function (numeraire = Y, only X moves).
     """
     r = np.asarray(r, dtype=float)
     pa, pb = price_low, price_high
