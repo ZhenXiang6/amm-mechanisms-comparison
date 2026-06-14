@@ -1,0 +1,29 @@
+# ---- Python ----
+.venv/
+__pycache__/
+*.pyc
+
+# ---- LaTeX build artifacts（可由 main.tex 重新編譯產生）----
+report/*.aux
+report/*.log
+report/*.out
+report/*.toc
+report/*.bbl
+report/*.blg
+report/*.fls
+report/*.fdb_latexmk
+report/*.synctex.gz
+report/b*.log
+report/bib*.log
+
+# ---- Claude Code 本地設定（不公開）----
+.claude/
+
+# ---- OS ----
+.DS_Store
+
+# ---- 注意 ----
+# 以下「會」被追蹤，因為報告需要它們且檔案很小：
+#   report/figures/*.pdf  （由 sim/make_figures.py、simulate_lp.py 產生的向量圖）
+#   report/main.pdf        （最終交付的報告）
+#   report/tab_mc.tex      （模擬結果表）
